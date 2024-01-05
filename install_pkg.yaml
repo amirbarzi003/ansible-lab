@@ -1,0 +1,12 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: install Nginx
+    apt:
+     name: nginx
+     state: latest
+
+
