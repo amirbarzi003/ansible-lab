@@ -8,5 +8,5 @@
     apt:
      name: nginx
      state: latest
-
+    when: ansible_distribution in ["Ubuntu", "Debian"]
 
