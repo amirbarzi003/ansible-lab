@@ -1,0 +1,24 @@
+---
+all:
+  hosts:
+    web.test.com:
+    db.test.com:
+    #badwolf.example.com:5309(add variable to inventory file)
+web_server:
+  hosts:
+    web.test.com:
+  vars:
+    nginx: web
+    proxy: web
+
+db_server:
+  hosts:
+    db.test.com:
+
+
+firewall:
+  children:
+    web_server:
+    db_server:
+
+

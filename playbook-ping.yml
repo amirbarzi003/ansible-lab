@@ -1,0 +1,27 @@
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: ping my servers
+      ansible.builtin.ping:
+
+    - name: Hello message
+      ansible.builtin.debug:
+       msg: Hello world
+
+    - name: start colord service
+      tags: service
+      service:
+        name: colord
+        state: started
+        enabled: yes
+      when: ansible_distribution == "Ubuntu"
+
+    - name: start ufw service
+      tags: firewall, ubuntu, service
+      service:
+        name: ufw
+        state: stopped
+        enabled: no
+      when: ansible_distribution == "Ubuntu"
+#ansible-playbook -i inventory.ini playbook.yaml
